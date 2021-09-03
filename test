@@ -1,0 +1,82 @@
+var bgImage, bg1;
+var logoImg, logo;
+var gameState = 0;
+var b1;
+var boyI, ScorpI, snakeI, mummyI, lionI, diamondI, jinI, trackI;
+var boy;
+
+
+function preload(){
+  bgImage = loadImage("ps/bg1.jpg");
+  logoImg = loadImage("./ps/logo.jpg");
+  boyI = loadImage("ps/boy.png")
+  ScorpI = loadImage("ps/scorpion.png");
+  mummyI = loadImage("ps/mummy.png");
+  snakeI = loadImage("ps/snake.png");
+  lionI = loadImage("ps/egypt.png");
+  diamondI = loadImage("ps/diamond.png");
+  jinI = loadImage("ps/jin.png");
+  trackI = loadImage("ps/path2.jpg");
+}
+function setup() {
+  var canvas = createCanvas(windowWidth, windowHeight);
+
+  var touches = []
+  
+ // bg1 = createSprite(windowWidth/2, windowHeight/2 );
+ // bg1.addImage("story",bgImage);
+  logo = createSprite(windowWidth/2,windowHeight/5.5);
+  logo.addImage(logoImg);
+  logo.scale = 0.15;
+
+  boy = createSprite(-windowWidth*2,windowHeight/2+200);
+  boy.addImage(boyI);
+  boy.scale = 0.65;
+
+  button1 = createButton('START')
+  button1.position(windowWidth/2,windowHeight/2+110)
+
+  bg1 = createSprite(windowWidth/2,windowHeight/2);
+  bg1.addImage(trackI);
+  bg1.scale = 2
+  
+}
+
+function draw() {
+ // background(255);
+  if(gameState === 0){
+    background(bgImage)
+    //windowWidth/2,windowHeight/
+    logo.visible = true;
+    bg1.visible = false;
+    
+    textStyle(BOLDITALIC)
+    textSize(30);
+    fill("black");
+    text("Hey! WELCOME to the Cave Adventures!",windowWidth/2-300,windowHeight/2-90);
+    text("There are many rumours in the village about Gold Treasure in the Cave Of Tharsis",windowWidth/2-600,windowHeight/2-50);
+    text("A boy went there to find it!",windowWidth/2-300+10,windowHeight/2-10);
+    text("Now, you are going to help that boy...",windowWidth/2-300,windowHeight/2+30);
+    fill("red");
+    text("CAUTION: Don't touch any of obstacle or you have to start again!!!",windowWidth/2-550,windowHeight/2+70);
+          
+  }   
+  button1.mousePressed(GS1);
+  drawSprites();
+
+  
+  function GS1(){
+   // background(0)
+    background(trackI)
+      logo.visible = false;
+      //logo.hide();
+      button1.hide()
+      bg1.visible = true;
+      bg1.velocityX = -2;
+     
+   
+  }
+  
+    
+}
+
